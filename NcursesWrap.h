@@ -16,13 +16,13 @@ class Ncurses
     int max_y;
 
     public:
-    Ncurses() {}
-    ~Ncurses(){}
-    void pause(){}
-    void nap(int ms){}
-    void refresh(){}
-    void add(char c, int x, int y){}
-    void add(int i, int x, int y){}
+    Ncurses();
+    ~Ncurses();
+    void pause();
+    void nap(int ms);
+    void refresh();
+    void add(char c, int x, int y);
+    void add(int i, int x, int y);
 };
 
 
