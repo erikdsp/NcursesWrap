@@ -8,8 +8,14 @@ int main()
         window.add('*', {8, 0});
         window.refresh();
         window.nap(500);
-        window.add('!', {5, 0});
-        std::string s {"World!"};
+        window.noecho_mode();
+        char my_c = window.get_char();
+        window.add(my_c, {5, 0});
+        std::string s{};
+        window.move_cursor({0,2});
+        window.echo_mode();
+        s = window.get_line();
+        window.noecho_mode();
         window.add("Hello", {8, 4});
         window.add(s, {14, 4});
         window.refresh();

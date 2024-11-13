@@ -77,22 +77,31 @@ void Ncurses::move_cursor(Coord p)
     move(p.y, p.x);
 }
 
+
+/** Turn off input echo and hide cursor 
+ */
 void Ncurses::noecho_mode()
 {
-
+    noecho();
+    curs_set(0); 
 }
 
+/** Turn back on input echo and show cursor 
+ */
 void Ncurses::echo_mode()
 {
-
+    echo();
+    curs_set(1);
 }
 
 char Ncurses::get_char()
 {
-    return 'E';     // dummy return
+    return getch();    
 }
 
 std::string Ncurses::get_line()
 {
-    return "get_line()";    // dummy return
+    char input[80];
+    getnstr(input, 79);
+    return input;    
 }
