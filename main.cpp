@@ -3,25 +3,23 @@
 
 int main() 
 {
+    std::string s{};
     {    
         Ncurses window;
-        window.add('*', {8, 0});
+        window.add("Demo of NcursesWrap", {1, 1});
         window.refresh();
-        window.nap(500);
-        window.noecho_mode();
-        char my_c = window.get_char();
-        window.add(my_c, {5, 0});
-        std::string s{};
-        window.move_cursor({0,2});
+        window.add("Please enter a string: ", {1, 3});
+        window.move_cursor({25,3});
         window.echo_mode();
         s = window.get_line();
         window.noecho_mode();
-        window.add("Hello", {8, 4});
-        window.add(s, {14, 4});
+        window.add("You wrote: ", {1,4});
+        window.add(s, {13, 4});
         window.refresh();
+        window.add("Press any key to exit... ", {1, 7});
         window.press_any_key();
     }                      // end of Ncurses window
-    std::cout << "Welcome back!" << "\n";
+    std::cout << "Your string was: " << s << "\n";
 
     return 0;
 }
