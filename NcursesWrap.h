@@ -27,7 +27,8 @@ class Ncurses
     void add(char c, Coord p);
     void add(int i, Coord p);
     void add(double d, Coord p);
-    void add(std::string& s, Coord p) const;
+    void add(const char* str, Coord p);
+    void add(std::string& str, Coord p) const;
     void refresh();
     void move_cursor(Coord p);
     void nap(int ms);

@@ -45,11 +45,19 @@ void Ncurses::add(double d, Coord p)
     move(old.y, old.x);
 }
 
-void Ncurses::add(std::string& s, Coord p) const
+void Ncurses::add(const char* str, Coord p)
 {
     Coord old{};
     getyx(stdscr, old.y, old.x);
-    mvaddstr(p.y, p.x, s.c_str());
+    mvaddstr(p.y, p.x, str);
+    move(old.y, old.x);    
+}
+
+void Ncurses::add(std::string& str, Coord p) const
+{
+    Coord old{};
+    getyx(stdscr, old.y, old.x);
+    mvaddstr(p.y, p.x, str.c_str());
     move(old.y, old.x);
 }
 
