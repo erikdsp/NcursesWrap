@@ -8,24 +8,28 @@
 #endif
     #include <string>
 
+struct Point
+{
+    int x{};
+    int y{};
+};
 
 
 class Ncurses 
 {
     private:
     WINDOW* win;
-    int max_x;
-    int max_y;
+    Point max{};
 
     public:
     Ncurses();
     ~Ncurses();
-    void add(char c, int x, int y);
-    void add(int i, int x, int y);
-    void add(double d, int x, int y);
-    void add(std::string_view s, int x, int y);
+    void add(char c, Point p);
+    void add(int i, Point p);
+    void add(double d, Point p);
+    void add(std::string_view s, Point p);
     void refresh();
-    void move_cursor();
+    void move_cursor(Point p);
     void nap(int ms);
     void noecho_mode();
     void echo_mode();

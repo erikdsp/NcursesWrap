@@ -5,11 +5,10 @@ Ncurses::Ncurses()
     {
         win = initscr();
         cbreak();           // disable input buffering
-        int y{};
-        int x{};
-        getmaxyx(stdscr, y, x); 
-        max_x = x;
-        max_y = y;
+        Point p{};
+        getmaxyx(stdscr, p.y, p.x); 
+        max.x = p.x;
+        max.y = p.y;
     }
 
 Ncurses::~Ncurses()
@@ -21,29 +20,28 @@ void Ncurses::press_any_key(){
         getch();
     }
 
-void Ncurses::add(char c, int x, int y)
+void Ncurses::add(char c, Point p)
 {
-    int old_x{};
-    int old_y{};
-    getyx(stdscr, old_y, old_x);
-    mvaddch(y, x, c);
-    move(old_y, old_x);
+    Point old{};
+    getyx(stdscr, old.y, old.x);
+    mvaddch(p.y, p.x, c);
+    move(old.y, old.x);
 }
-void Ncurses::add(int i, int x, int y)
+void Ncurses::add(int i, Point p)
 {
-    int old_x{};
-    int old_y{};
-    getyx(stdscr, old_y, old_x);
-    move(y, x);
+    Point old{};
+    getyx(stdscr, old.y, old.x);
+    move(p.y, p.x);
     printw("%d", i);
-    move(old_y, old_x);
+    move(old.y, old.x);
 }
 
-void Ncurses::add(double d, int x, int y)
+void Ncurses::add(double d, Point p)
 {
 
 }
-void Ncurses::add(std::string_view s, int x, int y)
+
+void Ncurses::add(std::string_view s, Point p)
 {
     
 }
@@ -59,9 +57,9 @@ void Ncurses::refresh()
 }
 
 
-void Ncurses::move_cursor()
+void Ncurses::move_cursor(Point p)
 {
-
+    move(p.y, p.x);
 }
 
 void Ncurses::noecho_mode()
