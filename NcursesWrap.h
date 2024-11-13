@@ -6,6 +6,8 @@
 #else
     #include <ncurses.h>
 #endif
+    #include <string>
+
 
 
 class Ncurses 
@@ -18,11 +20,18 @@ class Ncurses
     public:
     Ncurses();
     ~Ncurses();
-    void pause();
-    void nap(int ms);
-    void refresh();
     void add(char c, int x, int y);
     void add(int i, int x, int y);
+    void add(double d, int x, int y);
+    void add(std::string_view s, int x, int y);
+    void refresh();
+    void move_cursor();
+    void nap(int ms);
+    void noecho_mode();
+    void echo_mode();
+    char get_char();
+    std::string get_line();
+    void press_any_key();
 };
 
 
