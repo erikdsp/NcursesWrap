@@ -20,6 +20,12 @@ void Ncurses::press_any_key(){
         getch();
     }
 
+/** 
+ * Add functions with Coord prints at given Coord
+ * and then returns cursor to precious position
+ * Note that refresh() is needed afterwards for actual output to screen
+ */
+
 void Ncurses::add(char c, Coord p)
 {
     Coord old{};
@@ -45,6 +51,11 @@ void Ncurses::add(double d, Coord p)
     move(old.y, old.x);
 }
 
+void Ncurses::add(float f, Coord p)
+{
+    add(static_cast<double>(f), p);
+}
+
 void Ncurses::add(const char* str, Coord p)
 {
     Coord old{};
@@ -59,6 +70,41 @@ void Ncurses::add(std::string& str, Coord p) const
     getyx(stdscr, old.y, old.x);
     mvaddstr(p.y, p.x, str.c_str());
     move(old.y, old.x);
+}
+
+/** 
+ * Add functions without Coord prints at current cursor location
+ * Note that refresh() is needed afterwards for actual output to screen
+ */
+
+void Ncurses::add(char c)
+{
+    addch(c);
+}
+
+void Ncurses::add(int i)
+{
+    printw("%d", i);
+}
+
+void Ncurses::add(double d)
+{
+    printw("%lf", d);
+}
+
+void Ncurses::add(float f)
+{
+    printw("%f", f);
+}
+
+void Ncurses::add(const char* str)
+{
+    addstr(str);
+}
+
+void Ncurses::add(std::string& str) const
+{
+    addstr(str.c_str());
 }
 
 
