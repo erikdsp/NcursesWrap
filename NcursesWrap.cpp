@@ -3,12 +3,12 @@
 
 Ncurses::Ncurses()
     {
-        win = initscr();
+        m_win = initscr();
         cbreak();           // disable input buffering
         Coord p;
         getmaxyx(stdscr, p.y, p.x); 
-        max.x = p.x;
-        max.y = p.y;
+        m_max.x = p.x;
+        m_max.y = p.y;
     }
 
 Ncurses::~Ncurses()
@@ -21,34 +21,24 @@ void Ncurses::press_any_key(){
     }
 
 /** 
- * Add functions with Coord prints at given Coord
- * and then returns cursor to precious position
+ * Add functions with Coord
  * Note that refresh() is needed afterwards for actual output to screen
  */
 
 void Ncurses::add(char c, Coord p)
 {
-    Coord old{};
-    getyx(stdscr, old.y, old.x);
     mvaddch(p.y, p.x, c);
-    move(old.y, old.x);
 }
 void Ncurses::add(int i, Coord p)
 {
-    Coord old{};
-    getyx(stdscr, old.y, old.x);
     move(p.y, p.x);
     printw("%d", i);
-    move(old.y, old.x);
 }
 
 void Ncurses::add(double d, Coord p)
 {
-    Coord old{};
-    getyx(stdscr, old.y, old.x);
     move(p.y, p.x);
     printw("%lf", d);
-    move(old.y, old.x);
 }
 
 void Ncurses::add(float f, Coord p)
@@ -58,18 +48,12 @@ void Ncurses::add(float f, Coord p)
 
 void Ncurses::add(const char* str, Coord p)
 {
-    Coord old{};
-    getyx(stdscr, old.y, old.x);
     mvaddstr(p.y, p.x, str);
-    move(old.y, old.x);    
 }
 
 void Ncurses::add(std::string& str, Coord p) const
 {
-    Coord old{};
-    getyx(stdscr, old.y, old.x);
     mvaddstr(p.y, p.x, str.c_str());
-    move(old.y, old.x);
 }
 
 /** 
@@ -123,6 +107,15 @@ void Ncurses::move_cursor(Coord p)
     move(p.y, p.x);
 }
 
+ void Ncurses::save_cursor()
+ {
+    getyx(stdscr, m_saved_cursor.y, m_saved_cursor.x);
+ }
+    
+void Ncurses::return_cursor()
+{
+    move(m_saved_cursor.y, m_saved_cursor.x);
+}
 
 /** Turn off input echo and hide cursor 
  */

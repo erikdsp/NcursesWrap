@@ -6,20 +6,17 @@
 #else
     #include <ncurses.h>
 #endif
+    #include "Coord.h"
     #include <string>
 
-struct Coord
-{
-    int x{};
-    int y{};
-};
 
 
 class Ncurses 
 {
     private:
-    WINDOW* win;
-    Coord max{};
+    WINDOW* m_win;
+    Coord m_max{};
+    Coord m_saved_cursor{};
 
     public:
     Ncurses();
@@ -38,6 +35,8 @@ class Ncurses
     void add(std::string& str) const;
     void refresh();
     void move_cursor(Coord p);
+    void save_cursor();
+    void return_cursor();
     void nap(int ms);
     void noecho_mode();
     void echo_mode();
