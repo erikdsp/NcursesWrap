@@ -33,6 +33,8 @@ class Ncurses
     void add(float f);
     void add(const char* str);
     void add(std::string& str) const;
+    void clear_line();
+    void clear_line(Coord p);
     void refresh();
     void move_cursor(Coord p);
     void save_cursor();

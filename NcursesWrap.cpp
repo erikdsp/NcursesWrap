@@ -92,14 +92,24 @@ void Ncurses::add(std::string& str) const
 }
 
 
-void Ncurses::nap(int ms)
+void Ncurses::clear_line()
 {
-    napms(ms);
+    clrtoeol();
 }
+
+void Ncurses::clear_line(Coord p)
+{
+    move(p.y, p.x);
+    clrtoeol();
+}
+
+
+
 void Ncurses::refresh()
 {
     ::refresh();    // access global function refresh()
 }
+
 
 
 void Ncurses::move_cursor(Coord p)
@@ -115,6 +125,11 @@ void Ncurses::move_cursor(Coord p)
 void Ncurses::return_cursor()
 {
     move(m_saved_cursor.y, m_saved_cursor.x);
+}
+
+void Ncurses::nap(int ms)
+{
+    napms(ms);
 }
 
 /** Turn off input echo and hide cursor 
