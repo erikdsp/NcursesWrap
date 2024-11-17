@@ -17,16 +17,16 @@ https://github.com/mcdaniel/curses_tutorial
 Usage: \
 Create Ncurses object in a scope. \
 When the scope ends the destructor calls endwin() and removes the window. \
-This version only uses the default window called stdscr \
+This version only uses the default window called stdscr 
 
 Output: \
 add() to print stuff to the screen. \
-refresh() needs to be called before output is shown \
+refresh() needs to be called before output is shown 
 
 Input: \
 get_char(); \
 get_line(); \
-press_any_key();    // discards input \
+press_any_key();    // discards input 
 
 
 Colors: \
@@ -34,7 +34,7 @@ init_colors() enables colors \
 set_color_pair() defines a color pair \
 color_on() turns a color pair on \
 color_off() turns a color pair off \
-define_color() defines a custom color \
+define_color() defines a custom color 
 
 Predefined colors in Ncurses: \
  COLOR_BLACK   0 \
@@ -44,7 +44,7 @@ Predefined colors in Ncurses: \
  COLOR_BLUE    4 \
  COLOR_MAGENTA 5 \
  COLOR_CYAN    6 \
- COLOR_WHITE   7 \
+ COLOR_WHITE   7 
 
 Simple demo in example.cpp
 
