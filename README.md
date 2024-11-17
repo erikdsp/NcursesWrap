@@ -14,10 +14,10 @@ https://github.com/mcdaniel/curses_tutorial
 
 
 
-Usage:
-Create Ncurses object in a scope. 
-When the scope ends the destructor calls endwin() and removes the window.
-This version only uses the default window called stdscr
+Usage: \
+Create Ncurses object in a scope. \
+When the scope ends the destructor calls endwin() and removes the window. \
+This version only uses the default window called stdscr \
 
 Output:
 add() to print stuff to the screen.
