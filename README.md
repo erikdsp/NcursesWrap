@@ -1,4 +1,4 @@
-A simple Ncurses wrap for C++
+## A simple Ncurses wrap for C++
 
 The idea is to simplify basic use of Ncurses by wrapping it in a C++ class. 
 This attempt is not aiming to be complete. It includes the parts I find useful
