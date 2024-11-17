@@ -160,7 +160,7 @@ std::string Ncurses::get_line()
     return input;    
 }
 
-void Ncurses::init_color()
+void Ncurses::init_colors()
 {
     if(has_colors())                // checks if terminal has color capabilities, returns true if it has
     {
@@ -171,15 +171,26 @@ void Ncurses::init_color()
     }
 }
 
-void Ncurses::set_color_pair(int index, int foreground, int background)
+void Ncurses::set_color_pair(int cpair_index, int foreground, int background)
 {
-    init_pair(index, foreground, background);
+    init_pair(cpair_index, foreground, background);
 }
 
- void Ncurses::color_on(int color_pair)
- {
-    attrset(COLOR_PAIR(color_pair));
- }      
+void Ncurses::define_color(int name_index, int r, int g, int b)
+{
+    init_color(name_index, rgb_to_curses(98), rgb_to_curses(47), rgb_to_curses(117));
+}
+
+int Ncurses::rgb_to_curses(int value)
+{
+    constexpr float conv_factor{3.90625};       // converts from 0-255 to 0-1000 range
+    return static_cast<int>(static_cast<float>(value)*conv_factor);
+}
+
+void Ncurses::color_on(int color_pair)
+{
+attrset(COLOR_PAIR(color_pair));
+}      
 
 void Ncurses::color_off(int color_pair)
 {
