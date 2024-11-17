@@ -1,3 +1,4 @@
+// Wrapper for Ncurses - See notes in readme 
 #ifndef NCURSES_SIMPLE_WRAP
 #define NCURSES_SIMPLE_WRAP
 
@@ -23,6 +24,7 @@ class Ncurses
     public:
     Ncurses();
     ~Ncurses();
+    // Output
     void add(char c, Coord p);
     void add(int i, Coord p);
     void add(double d, Coord p);
@@ -38,15 +40,18 @@ class Ncurses
     void clear_line();
     void clear_line(Coord p);
     void refresh();
+    // Various functions
     void move_cursor(Coord p);
     void save_cursor();
     void return_cursor();
     void nap(int ms);
     void noecho_mode();
     void echo_mode();
+    // Input
     char get_char();
     std::string get_line();
     void press_any_key();
+    // Colors
     void init_colors();
     void set_color_pair(int cpair_index, int foreground, int background);
     void define_color(int name_index, int r, int g, int b);
