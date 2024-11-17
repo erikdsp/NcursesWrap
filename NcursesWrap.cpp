@@ -159,3 +159,29 @@ std::string Ncurses::get_line()
     getnstr(input, 79);
     return input;    
 }
+
+void Ncurses::init_color()
+{
+    if(has_colors())                // checks if terminal has color capabilities, returns true if it has
+    {
+        if(start_color() == OK)     // enables use of color in terminal, returns OK on success
+        {
+            m_has_color = true;
+        }
+    }
+}
+
+void Ncurses::set_color_pair(int index, int foreground, int background)
+{
+    init_pair(index, foreground, background);
+}
+
+ void Ncurses::color_on(int color_pair)
+ {
+    attrset(COLOR_PAIR(color_pair));
+ }      
+
+void Ncurses::color_off(int color_pair)
+{
+    attroff(COLOR_PAIR(color_pair));
+}

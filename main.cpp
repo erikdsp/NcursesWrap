@@ -6,7 +6,11 @@ int main()
     std::string s{};
     {    
         Ncurses window;
+        window.init_color();
+        window.set_color_pair(1, COLOR_RED, COLOR_BLACK);
+        window.color_on(1);
         window.add("Demo of NcursesWrap", {1, 1});
+        window.color_off(1);
         window.add(" *  *  *  *  *  *  ", {1, 2});
         window.refresh();
         window.add("Please enter a string: ", {1, 3});

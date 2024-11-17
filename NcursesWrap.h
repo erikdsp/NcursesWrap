@@ -17,6 +17,7 @@ class Ncurses
     WINDOW* m_win;
     Coord m_max{};
     Coord m_saved_cursor{};
+    bool m_has_color{false};
 
     public:
     Ncurses();
@@ -45,6 +46,10 @@ class Ncurses
     char get_char();
     std::string get_line();
     void press_any_key();
+    void init_color();
+    void set_color_pair(int index, int foreground, int background);
+    void color_on(int color_pair);      
+    void color_off(int color_pair);
 };
 
 
